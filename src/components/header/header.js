@@ -34,7 +34,7 @@ const Header = (props) => {
 
     const [isOpenDropDown, setisOpenDropDown] = useState(false);
     const [isOpenAccDropDown, setisOpenAccDropDown] = useState(false);
-    
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [isopenSearch, setOpenSearch] = useState(false);
     const [isOpenNav, setIsOpenNav] = useState(false);
@@ -279,25 +279,25 @@ const Header = (props) => {
 
 
 
-            
+
 
             <div className='afterHeader'></div>
 
-           
+
 
             {
                 isOpenAccDropDown !== false &&
                 <>
-                <div className='navbarOverlay' onClick={closeNav}></div>
-                <ul className='dropdownMenu dropdownMenuAcc' onClick={closeNav}>
-                    <li><Button className='align-items-center'><Link to=""><Person2OutlinedIcon /> My Account</Link></Button></li>
-                    <li><Button className='align-items-center'><Link to=""> <img src={IconCompare} />Compare</Link></Button></li>
-                    <li><Button className='align-items-center'><Link to=""> <img src={IconCart} />Cart</Link></Button></li>
-                    <li><Button><Link to=""><LocationOnOutlinedIcon /> Order Tracking</Link></Button></li>
-                    <li><Button><Link to=""><FavoriteBorderOutlinedIcon /> My Wishlist</Link></Button></li>
-                    <li><Button><Link to=""><SettingsOutlinedIcon /> Setting</Link></Button></li>
-                    <li><Button onClick={signOut}><Link to=""><LogoutOutlinedIcon /> Sign out</Link></Button></li>
-                </ul>
+                    <div className='navbarOverlay' onClick={closeNav}></div>
+                    <ul className='dropdownMenu dropdownMenuAcc' onClick={closeNav}>
+                        <li><Button className='align-items-center'><Link to=""><Person2OutlinedIcon /> My Account</Link></Button></li>
+                        <li><Button className='align-items-center'><Link to=""> <img src={IconCompare} />Compare</Link></Button></li>
+                        <li><Button className='align-items-center'><Link to=""> <img src={IconCart} />Cart</Link></Button></li>
+                        <li><Button><Link to=""><LocationOnOutlinedIcon /> Order Tracking</Link></Button></li>
+                        <li><Button><Link to=""><FavoriteBorderOutlinedIcon /> My Wishlist</Link></Button></li>
+                        <li><Button><Link to=""><SettingsOutlinedIcon /> Setting</Link></Button></li>
+                        <li><Button onClick={signOut}><Link to=""><LogoutOutlinedIcon /> Sign out</Link></Button></li>
+                    </ul>
                 </>
             }
 
