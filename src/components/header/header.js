@@ -30,6 +30,9 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
+// Services 
+import { getAllCategoriesDetail } from '../../services/ProductDataService'
+
 const Header = (props) => {
 
     const [isOpenDropDown, setisOpenDropDown] = useState(false);
@@ -49,22 +52,24 @@ const Header = (props) => {
 
     }, [context.cartItems])
 
-    const [categories, setcategories] = useState([
-        'Milks and Dairies',
-        'Wines & Drinks',
-        'Clothing & beauty',
-        'Fresh Seafood',
-        'Pet Foods & Toy',
-        'Fast food',
-        'Baking material',
-        'Vegetables',
-        'Fresh Fruit',
-        'Bread and Juice',
-        'Milks and Dairies',
-        'Wines & Drinks',
-        'Clothing & beauty',
-        'Fresh Seafood'
-    ]);
+    const [loading, setLoading] = useState(true); // New loading state
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const allCategoriesDetail = async () => {
+            try {
+                const productCategories = await getAllCategoriesDetail();
+                setCategories(productCategories);
+                setLoading(false); // Set loading to false after data is fetched
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setLoading(false);
+            }
+        };
+
+        allCategoriesDetail();
+    }, []);
 
 
     const countryList = [];
@@ -185,8 +190,17 @@ const Header = (props) => {
                                     {
                                         windowWidth < 992 && <div class="closeSearch" onClick={closeSearch}><ArrowBackIosIcon /></div>
                                     }
-                                    <Select data={categories} placeholder={'All Categories'} icon={false} />
+                                    {/* <Select data={categories} placeholder={'All Categories'} icon={false} /> */}
 
+                                    {loading ? (
+                                        <div>Loading...</div> // Display loading indicator while fetching data
+                                    ) : (
+                                        <Select
+                                            data={categories.map(category => category.categoryName)}
+                                            placeholder={'All Categories'}
+                                            icon={false}
+                                        />
+                                    )}
 
                                     <div className='search'>
                                         <input type='text' placeholder='Search for items...' ref={searchInput} />
