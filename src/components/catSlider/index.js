@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState,useContext } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import Slider from "react-slick";
 import './style.css';
 import { Link } from 'react-router-dom';
@@ -41,9 +41,9 @@ const CatSlider = (props) => {
         slidesToShow: 10,
         slidesToScroll: 1,
         fade: false,
-        arrows: context.windowWidth>992 ? true : false,
-        autoplay: context.windowWidth>992 ? 2000 : false,
-        centerMode: context.windowWidth>992 ? true : false
+        arrows: context.windowWidth > 992 ? true : false,
+        autoplay: context.windowWidth > 992 ? 2000 : false,
+        centerMode: context.windowWidth > 992 ? true : false
     };
 
 
@@ -71,7 +71,7 @@ const CatSlider = (props) => {
         <>
             <div className='catSliderSection'>
                 <div className='container-fluid' ref={slider}>
-                    <h2 className='hd'>Featured Categories</h2>
+                    <h2 className='hd'>Categories</h2>
                     <Slider {...settings} className='cat_slider_Main' id="cat_slider_Main" >
 
 

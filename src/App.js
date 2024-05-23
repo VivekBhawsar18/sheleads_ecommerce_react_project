@@ -20,6 +20,7 @@ import SignUp from './pages/SignUp';
 import Loader from './assets/images/loading.gif';
 
 import data from './data';
+import { getAllFeaturedProductDetail } from './services/ProductDataService';
 
 const MyContext = createContext();
 
@@ -35,8 +36,20 @@ function App() {
   const [isLogin, setIsLogin] = useState();
   const [isOpenFilters, setIsopenFilters] = useState(false);
   const [cartTotalAmount, setCartTotalAmount] = useState();
+  const [prodData, setProdData] = useState([])
 
-  
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  const getAllProducts = async () => {
+    try {
+      const data = await getAllFeaturedProductDetail();
+      setProdData(data);
+      console.log("data", data);
+    } catch (e) { }
+  }
+
   useEffect(() => {
     // getData('http://localhost:5000/productData');
     // getCartData("http://localhost:5000/cartItems");
@@ -44,10 +57,10 @@ function App() {
     const is_Login = localStorage.getItem('isLogin');
     setIsLogin(is_Login);
 
-      setTimeout(() => {
-        setProductData(data[1]);
-        setIsloading(false);
-      }, 3000);
+    setTimeout(() => {
+      setProductData(data[1]);
+      setIsloading(false);
+    }, 3000);
 
 
   }, []);
@@ -55,7 +68,7 @@ function App() {
 
   useEffect(() => {
     getCartData("http://localhost:5000/cartItems");
-}, []);
+  }, []);
 
 
   // const getData = async (url) => {
@@ -81,14 +94,14 @@ function App() {
 
   const getCartData = async (url) => {
     try {
-        await axios.get(url).then((response) => {
-            setCartItems(response.data);
-        })
+      await axios.get(url).then((response) => {
+        setCartItems(response.data);
+      })
 
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     }
-}
+  }
 
   const addToCart = async (item) => {
     item.quantity = 1;
@@ -127,7 +140,7 @@ function App() {
   }
 
 
-  const openFilters=()=>{
+  const openFilters = () => {
     setIsopenFilters(!isOpenFilters)
   }
 
@@ -151,18 +164,18 @@ function App() {
   }
 
   return (
-    
+
     data.productData.length !== 0 &&
     <BrowserRouter>
       <MyContext.Provider value={value}>
         {
-          isLoading===true && <div className='loader'><img src={Loader}/></div>
+          isLoading === true && <div className='loader'><img src={Loader} /></div>
         }
 
-        
+
         <Header data={data.productData} />
         <Routes>
-          <Route exact={true} path="/" element={<Home data={data.productData} />} />
+          <Route exact={true} path="/" element={<Home data={prodData} data1={data.productData} />} />
           <Route exact={true} path="/cat/:id" element={<Listing data={data.productData} single={true} />} />
           <Route exact={true} path="/cat/:id/:id" element={<Listing data={data.productData} single={false} />} />
           <Route exact={true} path="/product/:id" element={<DetailsPage data={data.productData} />} />
@@ -172,7 +185,7 @@ function App() {
           <Route exact={true} path="/checkout" element={<Checkout />} />
           <Route exact={true} path="*" element={<NotFound />} />
         </Routes>
-       <Footer/>
+        <Footer />
       </MyContext.Provider>
     </BrowserRouter>
   );

@@ -15,7 +15,8 @@ import { MyContext } from '../../App';
 
 const Home = (props) => {
 
-    const [prodData, setprodData] = useState(props.data)
+    const { data, data1 } = props
+    const [prodData, setprodData] = useState(data1)
     const [catArray, setcatArray] = useState([])
     const [activeTab, setactiveTab] = useState();
     const [activeTabIndex, setactiveTabIndex] = useState(0);
@@ -24,17 +25,17 @@ const Home = (props) => {
     const [bestSells, setBestSells] = useState([]);
     const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
-    const productRow=useRef();
+    const productRow = useRef();
     const context = useContext(MyContext);
 
     var settings = {
         dots: false,
-        infinite: context.windowWidth<992 ? false : true,
+        infinite: context.windowWidth < 992 ? false : true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         fade: false,
-        arrows: context.windowWidth<992 ? false : true,
+        arrows: context.windowWidth < 992 ? false : true,
     };
 
     const catArr = [];
@@ -54,7 +55,7 @@ const Home = (props) => {
 
         setactiveTab(list2[0])
 
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
 
     }, [])
 
@@ -76,9 +77,9 @@ const Home = (props) => {
                                 })
 
                             setActiveTabData(arr)
-                            setTimeout(()=>{
+                            setTimeout(() => {
                                 setIsLoadingProducts(false);
-                            },[1000]);
+                            }, [1000]);
                         }
                     }
                 })
@@ -117,7 +118,7 @@ const Home = (props) => {
 
 
     return (
-        <div style={{display:'block'}}>
+        <div style={{ display: 'block' }}>
             <SliderBanner />
             <CatSlider data={prodData} />
 
@@ -127,7 +128,7 @@ const Home = (props) => {
             <section className='homeProducts homeProductWrapper'>
                 <div className='container-fluid'>
                     <div className='d-flex align-items-center homeProductsTitleWrap'>
-                        <h2 className='hd mb-0 mt-0 res-full'>Popular Products</h2>
+                        <h2 className='hd mb-0 mt-0 res-full'>Featured Products</h2>
                         <ul className='list list-inline ml-auto filterTab mb-0 res-full'>
 
                             {
@@ -140,7 +141,7 @@ const Home = (props) => {
                                                 onClick={() => {
                                                     setactiveTab(cat)
                                                     setactiveTabIndex(index);
-                                                    productRow.current.scrollLeft=0;
+                                                    productRow.current.scrollLeft = 0;
                                                     setIsLoadingProducts(true);
                                                 }}
                                             >
@@ -151,11 +152,32 @@ const Home = (props) => {
                                 })
                             }
 
+                            {/* {
+                                data.length !== 0 &&
+                                data.map((cat, index) => {
+                                    return (
+                                        <li className="list list-inline-item">
+                                            <a className={`cursor text-capitalize 
+                                                ${activeTabIndex === index ? 'act' : ''}`}
+                                                onClick={() => {
+                                                    setactiveTab(cat)
+                                                    setactiveTabIndex(index);
+                                                    productRow.current.scrollLeft = 0;
+                                                    setIsLoadingProducts(true);
+                                                }}
+                                            >
+                                                {cat.productName}
+                                            </a>
+                                        </li>
+                                    )
+                                })
+                            } */}
+
                         </ul>
                     </div>
 
 
-                    <div className={`productRow ${isLoadingProducts===true && 'loading'}`} ref={productRow}>
+                    <div className={`productRow ${isLoadingProducts === true && 'loading'}`} ref={productRow}>
 
                         {
                             activeTabData.length !== 0 &&
@@ -186,7 +208,7 @@ const Home = (props) => {
 
                     </div>
 
-                    <br className='res-hide' /><br  className='res-hide'/>
+                    <br className='res-hide' /><br className='res-hide' />
                     <div className='row'>
                         <div className='col-md-3 pr-5 res-hide'>
                             <img src={Banner4} className='w-100' />
@@ -245,9 +267,3 @@ const Home = (props) => {
 }
 
 export default Home;
-
-
-
-
-
-
