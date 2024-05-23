@@ -180,8 +180,9 @@ const Footer = () => {
                                 </div>
                             </div>
 
+                            {/* START  install apps*/}
 
-                            <div className='col-md-3 part3'>
+                            {/* <div className='col-md-3 part3'>
                                 <h3>Install App</h3>
                                 <br className='res-hide'/>
                                 <p>From App Store or Google Play</p>
@@ -195,7 +196,9 @@ const Footer = () => {
 
                                 <p>Secured Payment Gateways</p>
                                 <img src={paymentImage} />
-                            </div>
+                            </div> */}
+
+                            {/* END  install apps*/}
 
                         </div>
 

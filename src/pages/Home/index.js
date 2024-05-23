@@ -198,10 +198,10 @@ const Home = (props) => {
 
 
 
+            {/* START  Daily Best Sells */}
 
 
-
-            <section className='homeProducts homeProductsRow2 pt-0'>
+            {/* <section className='homeProducts homeProductsRow2 pt-0'>
                 <div className='container-fluid'>
                     <div className='d-flex align-items-center'>
                         <h2 className='hd mb-0 mt-0'>Daily Best Sells</h2>
@@ -234,11 +234,13 @@ const Home = (props) => {
 
 
                 </div>
-            </section>
+            </section> */}
 
+            {/* END  Daily Best Sells */}
 
+            {/* START  topProductsSection*/}
 
-            <section className='topProductsSection'>
+            {/* <section className='topProductsSection'>
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col'>
@@ -259,8 +261,9 @@ const Home = (props) => {
 
                     </div>
                 </div>
-            </section>
+            </section> */}
 
+            {/* END  topProductsSection*/}
 
         </div>
     )
