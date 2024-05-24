@@ -45,12 +45,11 @@ function App() {
     try {
       const data = await getAllFeaturedProductDetail();
       setProdData(data);
-      console.log("data", data);
+      console.log(" featured product", data);
     } catch (e) {}
   };
 
   useEffect(() => {
-    // getData('http://localhost:5000/productData');
     // getData('http://localhost:5000/productData');
     // getCartData("http://localhost:5000/cartItems");
 
@@ -63,51 +62,33 @@ function App() {
     }, 3000);
   }, []);
 
-  useEffect(() => {
-    getCartData("http://localhost:5000/cartItems");
-  }, []);
+  // useEffect(() => {
+  //   getCartData("http://localhost:5000/cartItems");
+  // }, []);
 
-  // const getData = async (url) => {
+  // const getCartData = async (url) => {
   //   try {
   //     await axios.get(url).then((response) => {
-  //       setProductData(response.data);
-  //       setTimeout(()=>{
-  //         setIsloading(false);
-  //       },2000);
-  //     })
-
-  //     await axios.get('https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=27dad2d0abd34a22965727ce8d939077').then((response) => {
-  //         console.log(response)
-  //     })
-
+  //       setCartItems(response.data);
+  //     });
   //   } catch (error) {
   //     console.log(error.message);
   //   }
-  // }
+  // };
 
-  const getCartData = async (url) => {
-    try {
-      await axios.get(url).then((response) => {
-        setCartItems(response.data);
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const addToCart = async (item) => {
+  //   item.quantity = 1;
 
-  const addToCart = async (item) => {
-    item.quantity = 1;
-
-    try {
-      await axios.post("http://localhost:5000/cartItems", item).then((res) => {
-        if (res !== undefined) {
-          setCartItems([...cartItems, { ...item, quantity: 1 }]);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     await axios.post("http://localhost:5000/cartItems", item).then((res) => {
+  //       if (res !== undefined) {
+  //         setCartItems([...cartItems, { ...item, quantity: 1 }]);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const removeItemsFromCart = (id) => {
     const arr = cartItems.filter((obj) => obj.id !== id);
@@ -137,7 +118,7 @@ function App() {
     isLogin,
     windowWidth,
     isOpenFilters,
-    addToCart,
+    // addToCart,
     removeItemsFromCart,
     emptyCart,
     signOut,
@@ -147,7 +128,7 @@ function App() {
     setIsopenNavigation,
     setCartTotalAmount,
     cartTotalAmount,
-    getCartData,
+    // getCartData,
     setCartItems,
   };
 
