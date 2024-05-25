@@ -38,7 +38,7 @@ const Product = ({ item }) => {
 
       {productData !== undefined && (
         <>
-          <Link to={`/product/${productData.id}`}>
+          <Link to={`/product/${item.prodId}`}>
             <div className="imgWrapper">
               <div className="p-4 wrapper mb-3">
                 <img
