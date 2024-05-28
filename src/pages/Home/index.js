@@ -113,7 +113,7 @@ const Home = (props) => {
       <section className="homeProducts homeProductWrapper">
         <div className="container-fluid">
           <div className="d-flex align-items-center homeProductsTitleWrap">
-            <h2 className="hd mb-0 mt-0 res-full">Featured Products</h2>
+            <h2 className="hd mb-0 mt-0 res-full">Products</h2>
             <ul className="list list-inline ml-auto filterTab mb-0 res-full">
               {/* {catArray.length !== 0 &&
                 catArray.map((cat, index) => {
