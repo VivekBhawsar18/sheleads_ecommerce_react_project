@@ -12,6 +12,8 @@ import Listing from "./pages/Listing";
 import NotFound from "./pages/NotFound";
 import DetailsPage from "./pages/Details";
 import Checkout from "./pages/checkout";
+import Payment from "./pages/Payment";
+
 
 import axios from "axios";
 import Cart from "./pages/cart";
@@ -169,6 +171,7 @@ function App() {
             <Route exact={true} path="/signUp" element={<SignUp />} />
             <Route exact={true} path="/checkout" element={<Checkout />} />
             <Route exact={true} path="*" element={<NotFound />} />
+            <Route exact={true} path="/payment" element={<Payment/>}  />
           </Routes>
           <Footer />
         </MyContext.Provider>
